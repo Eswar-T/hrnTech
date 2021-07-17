@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
+import "react-native-gesture-handler"
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
+import ComponentsNavigation from './src/navigation/stackNav';
+import { createStore,applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import reducers from './src/reducers';
+
+const createdStore = applyMiddleware(thunk)(createStore);
+const storage = createdStore(reducers);
 
 export default function App() {
+  LogBox.ignoreLogs(['Remote debugger']);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+            <Provider store={storage}>
+              <ComponentsNavigation/>   
+            </Provider>   
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
