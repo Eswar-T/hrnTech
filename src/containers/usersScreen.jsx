@@ -89,11 +89,14 @@ const styles = StyleSheet.create({
         width:70,
         height:70,
         borderRadius:30,
-        padding:15,
+        marginTop:12,
+        marginBottom:12,
+        marginLeft:25,
         resizeMode:'cover'
     },
     profileTitle:{
          textAlign:'center',
-         paddingTop:40
+         paddingTop:40,
+         paddingLeft:25
     }
 })
